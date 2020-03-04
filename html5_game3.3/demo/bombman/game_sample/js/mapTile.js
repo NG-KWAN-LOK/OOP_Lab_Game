@@ -39,7 +39,7 @@ var MapTile = function() {  //畫面的object
 
 };
 
-Object.defineProperty(MapTile.prototype, 'position', {  //物件位置 是該格的位置
+Object.defineProperty(MapTile.prototype, 'position', {  //圖片位置 是該格的位置
     get: function() {
         return this.mapPosition;
     },

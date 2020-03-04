@@ -4,13 +4,13 @@ var Level2_change = Framework.Class(Framework.Level , {
         //0 空地  1牆壁  2空木箱  3增加炸彈木箱道具  4增加威力道具木箱  5有獎的箱 -1增加炸彈數道具  -2增加炸彈power道具 
         this.mapArray = [];
         this.mapArray.push([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1]); //1
-        this.mapArray.push([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,2,0,0,0,0,2,2,1]); //2
-        this.mapArray.push([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,3,5,1,0,1,2,1,0,1]); //3
-        this.mapArray.push([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,3,2,2,0,0,0,2,2,1]); //4
-        this.mapArray.push([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,3,0,1,2,1,0,1,0,1]); //5
-        this.mapArray.push([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,3,0,1,0,0,2,5,0,1]); //6
-        this.mapArray.push([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,3,0,1,2,1,0,1,0,1]); //7
-        this.mapArray.push([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,3,4,2,0,0,2,2,0,1]); //8
+        this.mapArray.push([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-2,2,0,0,0,0,2,2,1]); //2
+        this.mapArray.push([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-2,5,1,0,1,2,1,0,1]); //3
+        this.mapArray.push([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-2,2,2,0,0,0,2,2,1]); //4
+        this.mapArray.push([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-3,0,1,2,1,0,1,0,1]); //5
+        this.mapArray.push([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-3,0,1,0,0,2,5,0,1]); //6
+        this.mapArray.push([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-1,0,1,2,1,0,1,0,1]); //7
+        this.mapArray.push([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-1,4,2,0,0,2,2,0,1]); //8
         this.mapArray.push([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,1,0,1,0,1,1,1,0,1]); //9
         this.mapArray.push([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,2,2,2,1]); //10
         this.mapArray.push([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1]); //11
@@ -19,7 +19,7 @@ var Level2_change = Framework.Class(Framework.Level , {
         this.map.load();
     },
 
-    initialize: function() {
+    initialize: function() {    //初始化地圖
         
         this.map.init();
         this.map.setPlayerPosition({x:15,y:1});     //角色spawn的位置
@@ -36,7 +36,6 @@ var Level2_change = Framework.Class(Framework.Level , {
         //this.rootScene.draw();
         //可支援畫各種單純的圖形和字
         this.map.draw(parentCtx);
-        
     },
 
     keydown:function(e, list){

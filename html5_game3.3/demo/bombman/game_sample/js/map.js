@@ -5,6 +5,8 @@ var Map = function(map) //碰撞框事件的object
 
         this.score = new Score();
         this.score.position = {x:200,y:0}; //分數板位置
+        this.numBomb = new NumBomb();
+        this.numBomb.position = {x:200,y:400}; //分數板位置
         this.mapFloor = new Framework.Sprite(define.imagePath + 'floor2.png');  //定義floor2
         this.mapFloor.scale = 2;    //size
         this.mapWall = new Framework.Sprite(define.imagePath + 'treeStone.png');    //定義treeStone
@@ -21,7 +23,7 @@ var Map = function(map) //碰撞框事件的object
         this.stopMonster  = new Framework.Sprite(define.imagePath + 'stopMonster.png'); //定義道具丙
         this.stopMonster.scale = 1.5;   //size
         this.player1 = new BombMan(define.imagePath + 'player1.png', {down: {from: 0, to: 2}, left: {from:3, to: 5}, right: {from: 6, to: 8}, up: {from: 9, to: 11}});  //定義 玩家
-        this.player1.position = {x:1, y:1}; //定義玩家位置
+        this.player1.position = {x:1, y:1}; //初始玩家位置 可以用.setPlayerPosition(x:,y:)改
 
         this.monster = [];  //有n個怪物 怪物array
         this.stopMonster = false;
@@ -70,7 +72,7 @@ var Map = function(map) //碰撞框事件的object
         }
 	};
 
-    this.setPlayerPosition = function(playerPosition){
+    this.setPlayerPosition = function(playerPosition){  //改玩家位置
         this.player1.position = playerPosition;
     }
     this.addMonster = function(monsterPosition)
@@ -80,23 +82,24 @@ var Map = function(map) //碰撞框事件的object
         this.monster.push(newMonster);
     }
 
-    this.playerMovedHandler = function(player){
+    this.playerMovedHandler = function(player){ //玩家移到道具後事件
         var constants = new Constants();
         var item = m_map.mapArray[player.position.y][player.position.x];
         if(item === constants.ItemEnum.INCREASE_BOMB){
             player.increaseBombNum();
-            m_map.mapArray[player.position.y][player.position.x] = 0;
-            m_map.tileArray[player.position.y*22+player.position.x].tileType = 0;
-            m_map.score.addScore(200);
+            m_map.mapArray[player.position.y][player.position.x] = 0;   //碰撞盒
+            m_map.tileArray[player.position.y*26+player.position.x].tileType = 0;   //圖片
+            m_map.score.addScore(200);  //加分
+            m_map.numBomb.addBomb(1);   //加bomb
         }else if(item === constants.ItemEnum.INCREASE_POWER){
             player.increaseBombPower();
             m_map.mapArray[player.position.y][player.position.x] = 0;
-            m_map.tileArray[player.position.y*22+player.position.x].tileType = 0;
+            m_map.tileArray[player.position.y*26+player.position.x].tileType = 0;
             m_map.score.addScore(200);
         }else if(item === constants.ItemEnum.STOP_MONSTER){
             m_map.stopMonster = true;
             m_map.mapArray[player.position.y][player.position.x] = 0;
-            m_map.tileArray[player.position.y*22+player.position.x].tileType = 0;
+            m_map.tileArray[player.position.y*26+player.position.x].tileType = 0;
             m_map.score.addScore(200);
         }
     }
@@ -192,6 +195,7 @@ var Map = function(map) //碰撞框事件的object
         }
         this.player1.draw(ctx);
         this.score.draw(ctx);
+        this.numBomb.draw(ctx);
 	}	
 
     var m_map = this;
@@ -252,7 +256,7 @@ var Map = function(map) //碰撞框事件的object
                 if(boxPosition.x === explorePos.x && boxPosition.y === explorePos.y){
                     m_map.boxArray[j].explored();
                     m_map.mapArray[explorePos.y][explorePos.x] = m_map.boxArray[j].item;
-                    m_map.tileArray[explorePos.y*22+explorePos.x].tileType = m_map.boxArray[j].item;
+                    m_map.tileArray[explorePos.y*26+explorePos.x].tileType = m_map.boxArray[j].item;    //爆炸後顯示道具圖片
                     m_map.boxArray.splice(j,1);
                     m_map.score.addScore(100);
                 }

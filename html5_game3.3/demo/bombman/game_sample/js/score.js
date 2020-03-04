@@ -13,14 +13,14 @@ var Score = function() {
 
     this.draw = function(ctx){
         ctx.globalAlpha=0.8;
-        ctx.fillStyle = 'black'; 
-        ctx.fillRect(this._position.x - 10, this._position.y, 300, 40);  
+        ctx.fillStyle = 'black'; //背景色
+        ctx.fillRect(this._position.x - 10, this._position.y, 300, 100);    //框的大小
         ctx.font = '30pt Algerian';
         ctx.globalAlpha=1;
-        ctx.fillStyle = 'yellow';
+        ctx.fillStyle = 'yellow';   //字色?
         ctx.textBaseline = 'top';
         ctx.textAlign = 'left';
-        ctx.fillText("Score: " + this._score, this._position.x, this._position.y);
+        ctx.fillText("Score: " + this._score, this._position.x, this._position.y);  //文字
     }
 
     this.addScore = function(score)

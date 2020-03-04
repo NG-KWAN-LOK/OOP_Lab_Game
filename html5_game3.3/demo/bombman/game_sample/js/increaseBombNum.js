@@ -25,7 +25,6 @@ var IncreaseBombNum = function() {
 
     this.draw = function(ctx){
         this.sprite.position = {x: this.mapPosition.x * PIXEL_CONST, y: this.mapPosition.y * PIXEL_CONST};
-        console.log(this.sprite.position.x, this.sprite.position.y);
         this.sprite.draw(ctx);
     }
 
