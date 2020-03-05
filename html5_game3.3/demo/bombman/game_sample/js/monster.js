@@ -88,7 +88,7 @@ var Monster = function(file, map, options) {
     this.update = function(){
         if(this.isdead ){ return; }
         this.sprite.update();
-        if(this.isWalking){
+        /*if(this.isWalking){
             if(this.walkTarget.x * PIXEL_CONST === this.spritePosition.x && this.walkTarget.y * PIXEL_CONST === this.spritePosition.y){
                 this.isWalking = false;
                 this.sprite.stop();
@@ -101,13 +101,12 @@ var Monster = function(file, map, options) {
             }else{
                 this.walkAlittle();
             }
-        }else
-        {
-            if(this.canWalking)
-            {
+        }
+        else{
+            if(this.canWalking){
                 this.randomWalk();
             }
-        }
+        }*/
     }
 
 
@@ -117,8 +116,7 @@ var Monster = function(file, map, options) {
         this.sprite.draw(ctx);
     }
     var walkDir = 0;
-    this.randomWalk = function()
-    {
+    /*this.randomWalk = function(){
         //var randNum = Math.floor(Math.random() * 100);
         var randNum = Framework.Game._currentLevel.cycleCount % 553;
         walkDir++;
@@ -145,7 +143,7 @@ var Monster = function(file, map, options) {
         {
             this.walk(walkStep);
         }
-    }
+    }*/
 
 };
 
